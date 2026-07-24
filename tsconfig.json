@@ -1,0 +1,10 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "rootDir": "src"
+  },
+  "include": ["src", "vitest-env.d.ts", "vitest-provided-context.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}

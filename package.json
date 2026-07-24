@@ -1,0 +1,73 @@
+{
+  "name": "@baggiotech/core",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Core package do ecossistema baggio.tech",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./identity": {
+      "types": "./dist/identity/index.d.ts",
+      "import": "./dist/identity/index.js",
+      "require": "./dist/identity/index.cjs"
+    },
+    "./governance": {
+      "types": "./dist/governance/index.d.ts",
+      "import": "./dist/governance/index.js",
+      "require": "./dist/governance/index.cjs"
+    },
+    "./persistence": {
+      "types": "./dist/persistence/index.d.ts",
+      "import": "./dist/persistence/index.js",
+      "require": "./dist/persistence/index.cjs"
+    },
+    "./security": {
+      "types": "./dist/security/index.d.ts",
+      "import": "./dist/security/index.js",
+      "require": "./dist/security/index.cjs"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.js",
+      "require": "./dist/theme/index.cjs"
+    },
+    "./forensics": {
+      "types": "./dist/forensics/index.d.ts",
+      "import": "./dist/forensics/index.js",
+      "require": "./dist/forensics/index.cjs"
+    },
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "import": "./dist/testing/index.js",
+      "require": "./dist/testing/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.16.3",
+    "@cloudflare/workers-types": "^4.20260401.1",
+    "@repo/typescript-config": "workspace:*",
+    "tsup": "^8.5.1",
+    "typescript": "5.9.2",
+    "vitest": "^4.1.6"
+  }
+}
