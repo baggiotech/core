@@ -10,7 +10,6 @@
   "files": [
     "dist"
   ],
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
