@@ -1,7 +1,7 @@
 import { CoreError } from "../types/index.ts";
 
 // ─── Forensics: integridade Ed25519 sobre arquivos R2 ─────────────────────────
-// Centraliza o que antes vivia na Server Action de compliance do Volt.
+// Centraliza o que antes vivia na Server Action de compliance do Core.
 // O parquet decode permanece no app (parquetjs-lite é Node-only); o Core trata
 // apenas: verificação criptográfica + summarização + tipos compartilhados.
 

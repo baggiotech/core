@@ -1,11 +1,11 @@
 import type { Plan } from "../types/index.ts";
 import { CoreError } from "../types/index.ts";
 
-// ─── Tipos globais do Volt Identity Service ───────────────────────────────────
+// ─── Tipos globais do Core Identity Service ───────────────────────────────────
 // Vivem no Core para que outros apps (Burnite, Basalt) possam consumir o
 // estado do tenant sem reimplementar contratos.
 
-export interface VoltTenantBranding {
+export interface CoreTenantBranding {
   appName: string;
   logoUrl?: string;
   primaryColor: string;
@@ -13,7 +13,7 @@ export interface VoltTenantBranding {
   supportEmail?: string;
 }
 
-export interface VoltTenantFeatures {
+export interface CoreTenantFeatures {
   oauth: boolean;
   passkeys: boolean;
   mfa: boolean;
@@ -23,7 +23,7 @@ export interface VoltTenantFeatures {
   compliance: boolean;
 }
 
-export interface VoltTenantSecurityPolicy {
+export interface CoreTenantSecurityPolicy {
   mfaRequired: boolean;
   sessionTimeoutSeconds: number;
   maxFailedAttempts: number;
@@ -31,23 +31,23 @@ export interface VoltTenantSecurityPolicy {
   blockedCountries: string[];
 }
 
-// Plano herdado do Volt (legacy) — mapeado para o Plan canônico do Core.
-export type VoltLegacyPlan = "free" | "starter" | "pro" | "enterprise";
+// Plano herdado do Core (legacy) — mapeado para o Plan canônico do Core.
+export type CoreLegacyPlan = "free" | "starter" | "pro" | "enterprise";
 
-export interface VoltTenantConfig {
+export interface CoreTenantConfig {
   tenantId: string;
   domain: string;
-  branding: VoltTenantBranding;
-  features: VoltTenantFeatures;
-  security: VoltTenantSecurityPolicy;
-  plan: VoltLegacyPlan;
+  branding: CoreTenantBranding;
+  features: CoreTenantFeatures;
+  security: CoreTenantSecurityPolicy;
+  plan: CoreLegacyPlan;
   createdAt: string;
   updatedAt: string;
 }
 
 // Estado de configuração com falhas modeladas como first-class domain states.
-export type VoltConfigState =
-  | { status: "ok"; tenantId: string; config: VoltTenantConfig }
+export type CoreConfigState =
+  | { status: "ok"; tenantId: string; config: CoreTenantConfig }
   | { status: "tenant_suspended"; tenantId: string; reason: string }
   | { status: "config_corrupted"; tenantId: string; reason: string; corruptionId: string }
   | { status: "infra_failure"; tenantId: string; reason: string };
@@ -56,16 +56,16 @@ export type VoltConfigState =
 // A partir de 2026-Q2 o Rust core emite camelCase nativo — mantemos os campos
 // snake_case como leitura legada para tenants cuja config ainda não foi
 // reescrita após a migração de schema.
-export interface VoltRawKvConfig {
+export interface CoreRawKvConfig {
   suspended?: boolean;
   suspension_reason?: string;
   suspensionReason?: string;
   tenant_id?: string;
   tenantId?: string;
   domain?: string;
-  branding?: Partial<VoltTenantBranding>;
-  features?: Partial<VoltTenantFeatures>;
-  security?: Partial<VoltTenantSecurityPolicy>;
+  branding?: Partial<CoreTenantBranding>;
+  features?: Partial<CoreTenantFeatures>;
+  security?: Partial<CoreTenantSecurityPolicy>;
   plan?: string;
   created_at?: string;
   createdAt?: string;
@@ -111,33 +111,33 @@ export function buildCorruptionId(tenantId: string, reason: string): string {
   return `crp_${Math.abs(hash).toString(16).padStart(8, "0")}`;
 }
 
-const LEGACY_PLAN_VALUES: VoltLegacyPlan[] = ["free", "starter", "pro", "enterprise"];
+const LEGACY_PLAN_VALUES: CoreLegacyPlan[] = ["free", "starter", "pro", "enterprise"];
 
-function normalizeLegacyPlan(raw: string | undefined): VoltLegacyPlan {
+function normalizeLegacyPlan(raw: string | undefined): CoreLegacyPlan {
   if (!raw) return "free";
-  if ((LEGACY_PLAN_VALUES as string[]).includes(raw)) return raw as VoltLegacyPlan;
+  if ((LEGACY_PLAN_VALUES as string[]).includes(raw)) return raw as CoreLegacyPlan;
   return "free";
 }
 
 // Mapeia o plano legado para o Plan canônico do Core (governance).
-const PLAN_BRIDGE: Record<VoltLegacyPlan, Plan> = {
+const PLAN_BRIDGE: Record<CoreLegacyPlan, Plan> = {
   free: "solo",
   starter: "start",
   pro: "pro",
   enterprise: "business",
 };
 
-export function bridgeLegacyPlan(legacy: VoltLegacyPlan): Plan {
+export function bridgeLegacyPlan(legacy: CoreLegacyPlan): Plan {
   return PLAN_BRIDGE[legacy];
 }
 
 // Normaliza o RawKvConfig (flat Rust ou nested console-native) num
-// VoltTenantConfig validado. Lança CoreError("SCHEMA_VIOLATION") em campos
+// CoreTenantConfig validado. Lança CoreError("SCHEMA_VIOLATION") em campos
 // obrigatórios ausentes — pegamos no caller para emitir status corrupted.
 // Preferência de leitura: nested console-native > Rust camelCase > Rust snake_case (legado).
-export function validateVoltConfig(raw: VoltRawKvConfig, fallbackTenantId: string): VoltTenantConfig {
+export function validateCoreConfig(raw: CoreRawKvConfig, fallbackTenantId: string): CoreTenantConfig {
   const resolvedTenantId = raw.tenantId ?? raw.tenant_id ?? raw.id ?? fallbackTenantId;
-  const domain = raw.domain ?? raw.customDomain ?? raw.custom_domain ?? `${resolvedTenantId}.volt.id`;
+  const domain = raw.domain ?? raw.customDomain ?? raw.custom_domain ?? `${resolvedTenantId}.core.id`;
   const appName = raw.branding?.appName ?? raw.brandName ?? raw.brand_name;
   const logoUrl = raw.branding?.logoUrl ?? raw.brandLogoUrl ?? raw.brand_logo_url;
   const primaryColor = raw.branding?.primaryColor ?? raw.brandColor ?? raw.brand_color ?? "#8C48A1";

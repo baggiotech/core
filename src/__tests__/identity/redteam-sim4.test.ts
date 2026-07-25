@@ -64,7 +64,7 @@ describe("🛡️ Red Team Sim-4: Race Condition de Revogação", () => {
       jti: "session-abc-123",
       exp: now + 600,
       iat: now,
-      iss: "volt-identity",
+      iss: "core-identity",
       aud: "workspace",
     };
 

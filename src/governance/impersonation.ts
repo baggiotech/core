@@ -1,6 +1,6 @@
 import { CoreError } from "../types/index.ts";
 
-// ─── IMPERSONATION GATE (Volt Auth PRD v2.7 §3.4) ────────────────────────────
+// ─── IMPERSONATION GATE (Core Auth PRD v2.7 §3.4) ────────────────────────────
 // O token de suporte gerado pelo /admin/impersonate carrega a claim estrita
 // `is_impersonated: true`. Este módulo intercepta essa claim e barra acessos
 // laterais a dados de faturamento, infraestrutura central e comandos de
@@ -38,6 +38,6 @@ export function assertImpersonationSafe(
   if (isActionAllowedUnderImpersonation(action)) return;
   throw new CoreError(
     "IMPERSONATION_BLOCKED",
-    `Action '${action}' is blocked during impersonation sessions (Volt PRD v2.7 §3.4)`,
+    `Action '${action}' is blocked during impersonation sessions (Core PRD v2.7 §3.4)`,
   );
 }

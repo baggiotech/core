@@ -8,7 +8,7 @@ import { CoreError } from "../../types/index.ts";
 const impersonated = { isImpersonating: true };
 const normal = { isImpersonating: false };
 
-// ─── Volt Auth PRD v2.7 §3.4: acessos laterais barrados ──────────────────────
+// ─── Core Auth PRD v2.7 §3.4: acessos laterais barrados ──────────────────────
 
 describe("isActionAllowedUnderImpersonation", () => {
   const blocked = [

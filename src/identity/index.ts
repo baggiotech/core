@@ -20,8 +20,8 @@ export {
   DEFAULT_SESSION_COOKIE_OPTIONS,
   DEFAULT_SESSION_TTL_SECONDS,
   DEFAULT_TOKEN_ISSUER,
-  VOLT_EFFECTIVE_TENANT_COOKIE,
-  VOLT_SESSION_COOKIE,
+  CORE_EFFECTIVE_TENANT_COOKIE,
+  CORE_SESSION_COOKIE,
 } from "./auth.ts";
 export type {
   CookieStoreLike,
@@ -34,18 +34,18 @@ export type {
 export { logImpersonationEvent, maybeLogImpersonation } from "./audit.ts";
 export type { ImpersonationAuditEntry } from "./audit.ts";
 
-// Schemas tenant-config (Volt identity service)
+// Schemas tenant-config (Core identity service)
 export {
   bridgeLegacyPlan,
   buildCorruptionId,
-  validateVoltConfig,
+  validateCoreConfig,
 } from "./tenant-config.ts";
 export type {
-  VoltConfigState,
-  VoltLegacyPlan,
-  VoltRawKvConfig,
-  VoltTenantBranding,
-  VoltTenantConfig,
-  VoltTenantFeatures,
-  VoltTenantSecurityPolicy,
+  CoreConfigState,
+  CoreLegacyPlan,
+  CoreRawKvConfig,
+  CoreTenantBranding,
+  CoreTenantConfig,
+  CoreTenantFeatures,
+  CoreTenantSecurityPolicy,
 } from "./tenant-config.ts";

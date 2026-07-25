@@ -20,11 +20,11 @@ export interface IdentityClaims {
   act_as?: string;
   // RFC 8693: o worker injeta act = { sub: <admin original> } no token de suporte.
   act?: { sub: string };
-  // Volt PRD v2.7 §3.4: claim estrita emitida pelo /admin/impersonate.
+  // Core PRD v2.7 §3.4: claim estrita emitida pelo /admin/impersonate.
   // O kernel intercepta e barra acessos laterais a faturamento, infraestrutura
   // central e comandos de deleção (ver governance/impersonation.ts).
   is_impersonated?: boolean;
-  // Stable global user ID — "volt:usr:{uuid}". Present for all new sessions.
+  // Stable global user ID — "core:usr:{uuid}". Present for all new sessions.
   uid?: string;
   // Product-scoped org memberships — format: "{product}:{org_id}" e.g. "crm:org_abc".
   // Gates cross-product access in each product's auth middleware.

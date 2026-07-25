@@ -24,7 +24,7 @@ import { TenantedDB } from "../../persistence/d1.ts";
 function buildClaims(overrides: Partial<IdentityClaims> = {}): IdentityClaims {
   const now = Math.floor(Date.now() / 1000);
   return {
-    iss: "volt-identity",
+    iss: "core-identity",
     sub: "user-a@empresa.com",
     tenant_id: "hub",
     role: "user",
@@ -32,7 +32,7 @@ function buildClaims(overrides: Partial<IdentityClaims> = {}): IdentityClaims {
     aud: "workspace",
     iat: now,
     exp: now + 600,
-    uid: "volt:usr:550e8400-e29b-41d4-a716-446655440000",
+    uid: "core:usr:550e8400-e29b-41d4-a716-446655440000",
     orgs: ["workspace:org_x"],
     ...overrides,
   };

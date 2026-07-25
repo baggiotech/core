@@ -9,12 +9,12 @@ function buildSession(overrides: Partial<VerifiedSession> = {}): VerifiedSession
   const effective = overrides.effectiveTenantId ?? tenantId;
   return {
     claims: {
-      iss: "volt-identity",
+      iss: "core-identity",
       sub: "admin@example.com",
       tenant_id: tenantId,
       role: "superadmin",
       jti: "jti-1",
-      aud: "volt",
+      aud: "core",
       iat: 0,
       exp: 0,
       ...(overrides.claims ?? {}),
@@ -75,12 +75,12 @@ describe("logImpersonationEvent", () => {
   it("inserts row with target_user when user-level impersonation (act_as)", async () => {
     const session = buildSession({
       claims: {
-        iss: "volt-identity",
+        iss: "core-identity",
         sub: "admin@example.com",
         tenant_id: "tenant-real",
         role: "admin",
         jti: "jti-x",
-        aud: "volt",
+        aud: "core",
         iat: 0,
         exp: 0,
         act_as: "user-7",

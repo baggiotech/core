@@ -7,7 +7,7 @@ Abaixo está a arquitetura proposta para o monorepo (pnpm/Turborepo) utilizando 
 ```text
 packages/core/
 ├── src/
-│   ├── identity/          # Integração com Volt (Auth/Identity)
+│   ├── identity/          # Integração com Core (Auth/Identity)
 │   ├── governance/        # Planos, Limites e Feature Gating
 │   ├── persistence/       # Adapters para D1, KV e R2
 │   ├── security/          # Sanitização e Criptografia (Burnite Protocol)
@@ -21,7 +21,7 @@ packages/core/
 
 ---
 
-### 🔑 1. Identity & Multitenancy (Volt Integration)
+### 🔑 1. Identity & Multitenancy (Core Integration)
 
 O Core deve interceptar o `hostname` ou `header` para identificar o Tenant.
 
@@ -110,4 +110,4 @@ export const getTenantedDB = (d1: D1Database, tenantId: string) => {
 2. **Versioning:** Como o Core é usado por todos os projetos, use versões semânticas (SemVer). Uma quebra no Core derruba o Basalt e o Burnite simultaneamente.
 3. **Tauri Compatibility:** Garanta que o módulo `security/sanitizer` possa ser compilado para WebAssembly ou usado no Node, para que a CLI do Burnite (Local-first) use a mesma lógica de segurança do servidor.
 
-**Você pretende unificar a tabela de usuários de todos os SaaS no Volt ou cada SaaS terá sua própria tabela de usuários vinculada ao tenant?**resposta: cada saas tera sua tabela
+**Você pretende unificar a tabela de usuários de todos os SaaS no Core ou cada SaaS terá sua própria tabela de usuários vinculada ao tenant?**resposta: cada saas tera sua tabela

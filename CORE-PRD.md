@@ -1,6 +1,6 @@
 # PRD: @baggio/core
 
-O `@baggio/core` é o **Kernel de Governança** do ecossistema baggio.tech. Ele não é um app, mas a biblioteca fundamental que garante que o Basalt, Burnite, Graphite e Volt operem sob as mesmas regras de isolamento, segurança e monetização.
+O `@baggio/core` é o **Kernel de Governança** do ecossistema baggio.tech. Ele não é um app, mas a biblioteca fundamental que garante que o Basalt, Burnite, Graphite e Core operem sob as mesmas regras de isolamento, segurança e monetização.
 
 ---
 
@@ -35,9 +35,9 @@ Centralizar a lógica de **Multitenancy**, **Governança de Planos** e **Persist
 * **D1 Client:** Wrapper sobre o D1 que injeta automaticamente `WHERE tenant_id = ?` em queries preparadas.
 * **KV/R2 Bridge:** Gerenciamento de chaves no KV e prefixos no R2 baseados no tenant para evitar colisões.
 
-### RF04: Identity Bridge (Volt)
+### RF04: Identity Bridge (Core)
 
-* **Auth Integration:** Interface única para validação de JWTs emitidos pelo **Volt**.
+* **Auth Integration:** Interface única para validação de JWTs emitidos pelo **Core**.
 * **RBAC (Role-Based Access Control):** Gestão de níveis de acesso (Admin, Editor, Viewer) padronizada.
 
 ### RF05: White-label Engine (Theming)

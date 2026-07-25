@@ -3,14 +3,14 @@ import type { TenantID, UserClaims } from "../types/index.ts";
 import { verifyTokenEdDSA, identityClaimsToUserClaims, type IdentityClaims } from "./jwt.ts";
 import type { KVNamespaceBinding } from "./context.ts";
 
-// Cookies emitidos pelo serviço de identidade Volt/Baggio.
+// Cookies emitidos pelo serviço de identidade Core/Baggio.
 // Centralizar nomes aqui evita drift entre apps que consomem a sessão.
 export const BAGGIO_SESSION_COOKIE = "baggio_session";
-export const VOLT_SESSION_COOKIE = BAGGIO_SESSION_COOKIE;
-export const VOLT_EFFECTIVE_TENANT_COOKIE = "baggio_tenant_id";
+export const CORE_SESSION_COOKIE = BAGGIO_SESSION_COOKIE;
+export const CORE_EFFECTIVE_TENANT_COOKIE = "baggio_tenant_id";
 
 export const DEFAULT_SESSION_TTL_SECONDS = 3600;
-export const DEFAULT_TOKEN_ISSUER = "volt-identity";
+export const DEFAULT_TOKEN_ISSUER = "core-identity";
 
 export interface SessionCookieOptions {
   httpOnly: boolean;
@@ -50,9 +50,9 @@ export interface VerifyOptions {
   publicKeyBase64Url?: string;
   // Caminho remoto: endpoint /auth/verify do Worker; garante revogação via DO.
   fallbackVerifyUrl?: string;
-  // Issuer esperado no claim `iss`. Default: "volt-identity".
+  // Issuer esperado no claim `iss`. Default: "core-identity".
   expectedIssuer?: string;
-  // Hybrid Consistency Layer (Volt PRD v2.8 §3.3): binding KV com a blacklist
+  // Hybrid Consistency Layer (Core PRD v2.8 §3.3): binding KV com a blacklist
   // de revogação (`revoked:{jti}`, TTL = vida restante do token). Combina a
   // validação stateless local com revogação imediata O(1), sem hop ao DO.
   revocationKV?: KVNamespaceBinding;
@@ -102,14 +102,14 @@ async function verifyViaWorker(
 }
 
 export class BaggioAuth {
-  // Persiste o JWT do Volt em cookie httpOnly seguindo as defaults globais.
+  // Persiste o JWT do Core em cookie httpOnly seguindo as defaults globais.
   static createSession(
     cookieStore: CookieStoreLike,
     token: string,
     overrides?: Partial<SessionCookieOptions>,
   ): void {
     const options: SessionCookieOptions = { ...DEFAULT_SESSION_COOKIE_OPTIONS, ...overrides };
-    const cookieName = options.useHostPrefix ? `__Host-${VOLT_SESSION_COOKIE}` : VOLT_SESSION_COOKIE;
+    const cookieName = options.useHostPrefix ? `__Host-${CORE_SESSION_COOKIE}` : CORE_SESSION_COOKIE;
     
     // __Host- cookies cannot have a domain attribute
     if (options.useHostPrefix) {
@@ -122,15 +122,15 @@ export class BaggioAuth {
   // Apaga a sessão. Use no logout/erro de verificação.
   static clearSession(cookieStore: CookieStoreLike): void {
     if (cookieStore.delete) {
-      cookieStore.delete(`__Host-${VOLT_SESSION_COOKIE}`);
-      cookieStore.delete(VOLT_SESSION_COOKIE);
-      cookieStore.delete(VOLT_EFFECTIVE_TENANT_COOKIE);
+      cookieStore.delete(`__Host-${CORE_SESSION_COOKIE}`);
+      cookieStore.delete(CORE_SESSION_COOKIE);
+      cookieStore.delete(CORE_EFFECTIVE_TENANT_COOKIE);
       return;
     }
     // Fallback: sobrescreve com maxAge=0
-    cookieStore.set(`__Host-${VOLT_SESSION_COOKIE}`, "", { ...DEFAULT_SESSION_COOKIE_OPTIONS, maxAge: 0, domain: undefined });
-    cookieStore.set(VOLT_SESSION_COOKIE, "", { ...DEFAULT_SESSION_COOKIE_OPTIONS, maxAge: 0 });
-    cookieStore.set(VOLT_EFFECTIVE_TENANT_COOKIE, "", { ...DEFAULT_SESSION_COOKIE_OPTIONS, maxAge: 0 });
+    cookieStore.set(`__Host-${CORE_SESSION_COOKIE}`, "", { ...DEFAULT_SESSION_COOKIE_OPTIONS, maxAge: 0, domain: undefined });
+    cookieStore.set(CORE_SESSION_COOKIE, "", { ...DEFAULT_SESSION_COOKIE_OPTIONS, maxAge: 0 });
+    cookieStore.set(CORE_EFFECTIVE_TENANT_COOKIE, "", { ...DEFAULT_SESSION_COOKIE_OPTIONS, maxAge: 0 });
   }
 
   // Verifica o cookie e retorna a sessão tipada.
@@ -139,7 +139,7 @@ export class BaggioAuth {
     cookieStore: CookieStoreLike,
     options: VerifyOptions,
   ): Promise<VerifiedSession> {
-    const token = cookieStore.get(`__Host-${VOLT_SESSION_COOKIE}`)?.value || cookieStore.get(VOLT_SESSION_COOKIE)?.value;
+    const token = cookieStore.get(`__Host-${CORE_SESSION_COOKIE}`)?.value || cookieStore.get(CORE_SESSION_COOKIE)?.value;
     if (!token) {
       throw new CoreError("UNAUTHORIZED", "Missing session token");
     }
@@ -175,7 +175,7 @@ export class BaggioAuth {
       );
     }
 
-    // Hybrid Consistency Layer (Volt PRD v2.8 §3.3): após a validação
+    // Hybrid Consistency Layer (Core PRD v2.8 §3.3): após a validação
     // stateless, consulta O(1) na blacklist de revogação do KV local.
     if (options.revocationKV && claims.jti) {
       const revoked = await options.revocationKV.get(`revoked:${claims.jti}`);
@@ -186,12 +186,12 @@ export class BaggioAuth {
 
     const userClaims = identityClaimsToUserClaims(claims);
     const tenantId = userClaims.tenantId;
-    const effectiveRaw = cookieStore.get(VOLT_EFFECTIVE_TENANT_COOKIE)?.value;
+    const effectiveRaw = cookieStore.get(CORE_EFFECTIVE_TENANT_COOKIE)?.value;
     const effectiveTenantId =
       effectiveRaw && isSuperadmin(claims.role) ? (effectiveRaw as TenantID) : tenantId;
     // Impersonation Gate: tenant-level (effectiveTenantId difere), user-level
     // (claims.act_as / claims.act preenchidos pelo worker após /admin/impersonate)
-    // OU a claim estrita is_impersonated (Volt PRD v2.7 §3.4) — interceptada
+    // OU a claim estrita is_impersonated (Core PRD v2.7 §3.4) — interceptada
     // também por governance/assertImpersonationSafe para barrar acessos laterais.
     const isImpersonating =
       effectiveTenantId !== tenantId ||

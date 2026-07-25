@@ -1,5 +1,5 @@
--- Volt Identity Service: tabelas específicas do serviço de autenticação
--- Estas tabelas residem no D1 do Volt (separado do D1 compartilhado do baggio-core)
+-- Core Identity Service: tabelas específicas do serviço de autenticação
+-- Estas tabelas residem no D1 do Core (separado do D1 compartilhado do baggio-core)
 
 -- 1. Usuários por tenant (identities)
 CREATE TABLE IF NOT EXISTS users (

@@ -18,8 +18,8 @@ export {
   DEFAULT_SESSION_COOKIE_OPTIONS,
   DEFAULT_SESSION_TTL_SECONDS,
   DEFAULT_TOKEN_ISSUER,
-  VOLT_EFFECTIVE_TENANT_COOKIE,
-  VOLT_SESSION_COOKIE,
+  CORE_EFFECTIVE_TENANT_COOKIE,
+  CORE_SESSION_COOKIE,
 } from "./identity/auth.ts";
 export type {
   CookieStoreLike,
@@ -32,20 +32,20 @@ export type {
 export { logImpersonationEvent, maybeLogImpersonation } from "./identity/audit.ts";
 export type { ImpersonationAuditEntry } from "./identity/audit.ts";
 
-// Volt tenant-config schema
+// Core tenant-config schema
 export {
   bridgeLegacyPlan,
   buildCorruptionId,
-  validateVoltConfig,
+  validateCoreConfig,
 } from "./identity/tenant-config.ts";
 export type {
-  VoltConfigState,
-  VoltLegacyPlan,
-  VoltRawKvConfig,
-  VoltTenantBranding,
-  VoltTenantConfig,
-  VoltTenantFeatures,
-  VoltTenantSecurityPolicy,
+  CoreConfigState,
+  CoreLegacyPlan,
+  CoreRawKvConfig,
+  CoreTenantBranding,
+  CoreTenantConfig,
+  CoreTenantFeatures,
+  CoreTenantSecurityPolicy,
 } from "./identity/tenant-config.ts";
 
 // Governance & Feature Gating
