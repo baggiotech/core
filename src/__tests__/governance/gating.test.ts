@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { can } from "../../governance/gating.ts";
-import { PLAN_QUOTAS } from "../../governance/plans.ts";
-import { asTenantID, CoreError } from "../../types/index.ts";
-import type { Plan, TenantContext } from "../../types/index.ts";
+import { can } from "../../governance/gating";
+import { PLAN_QUOTAS } from "../../governance/plans";
+import { asTenantID, CoreError } from "../../types/index";
+import type { Plan, TenantContext } from "../../types/index";
 
 function makeTenant(plan: Plan): TenantContext {
   return Object.freeze({

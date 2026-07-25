@@ -1,7 +1,7 @@
-import type { TenantID } from "../types/index.ts";
-import type { D1DatabaseBinding } from "./context.ts";
-import { generateId } from "../security/sanitizer.ts";
-import type { VerifiedSession } from "./auth.ts";
+import type { TenantID } from "../types/index";
+import type { D1DatabaseBinding } from "./context";
+import { generateId } from "../security/sanitizer";
+import type { VerifiedSession } from "./auth";
 
 // Registro de uma ação executada sob Impersonation Gate.
 // Grava direto no D1 do consumer; o caller é responsável por passar o binding.

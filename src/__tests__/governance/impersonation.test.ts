@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import {
   assertImpersonationSafe,
   isActionAllowedUnderImpersonation,
-} from "../../governance/impersonation.ts";
-import { CoreError } from "../../types/index.ts";
+} from "../../governance/impersonation";
+import { CoreError } from "../../types/index";
 
 const impersonated = { isImpersonating: true };
 const normal = { isImpersonating: false };

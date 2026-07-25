@@ -1,4 +1,4 @@
-import type { TenantID } from "../types/index.ts";
+import type { TenantID } from "../types/index";
 
 export interface R2BucketBinding {
   get(key: string): Promise<R2Object | null>;

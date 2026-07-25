@@ -1,6 +1,6 @@
-import type { TenantID } from "../types/index.ts";
-import { CoreError } from "../types/index.ts";
-import type { D1DatabaseBinding } from "../identity/context.ts";
+import type { TenantID } from "../types/index";
+import { CoreError } from "../types/index";
+import type { D1DatabaseBinding } from "../identity/context";
 
 // Parâmetros aceitos pelo D1
 type D1Value = string | number | boolean | null;

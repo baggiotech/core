@@ -4,5 +4,5 @@ export {
   resetTestDB,
   TEST_JWT_SECRET,
   testTenantedDB,
-} from "./factories.ts";
-export type { CreateTestTenantOptions, MockAuthResult } from "./factories.ts";
+} from "./factories";
+export type { CreateTestTenantOptions, MockAuthResult } from "./factories";

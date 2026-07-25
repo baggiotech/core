@@ -1,7 +1,7 @@
-import { CoreError } from "../types/index.ts";
-import type { TenantID, UserClaims } from "../types/index.ts";
-import { verifyTokenEdDSA, identityClaimsToUserClaims, type IdentityClaims } from "./jwt.ts";
-import type { KVNamespaceBinding } from "./context.ts";
+import { CoreError } from "../types/index";
+import type { TenantID, UserClaims } from "../types/index";
+import { verifyTokenEdDSA, identityClaimsToUserClaims, type IdentityClaims } from "./jwt";
+import type { KVNamespaceBinding } from "./context";
 
 // Cookies emitidos pelo serviço de identidade Core/Baggio.
 // Centralizar nomes aqui evita drift entre apps que consomem a sessão.

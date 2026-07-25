@@ -1,4 +1,4 @@
-import { CoreError } from "../types/index.ts";
+import { CoreError } from "../types/index";
 
 // ─── IMPERSONATION GATE (Core Auth PRD v2.7 §3.4) ────────────────────────────
 // O token de suporte gerado pelo /admin/impersonate carrega a claim estrita

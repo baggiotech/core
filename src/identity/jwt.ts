@@ -1,5 +1,5 @@
-import { asTenantID, asUserID, CoreError } from "../types/index.ts";
-import type { Role, TenantID, UserClaims, UserID } from "../types/index.ts";
+import { asTenantID, asUserID, CoreError } from "../types/index";
+import type { Role, TenantID, UserClaims, UserID } from "../types/index";
 
 // Claims do JWT EdDSA emitido pelo serviço de identidade (alg: "EdDSA", crv: "Ed25519")
 export interface IdentityClaims {

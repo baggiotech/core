@@ -1,5 +1,5 @@
-import type { Plan } from "../types/index.ts";
-import { CoreError } from "../types/index.ts";
+import type { Plan } from "../types/index";
+import { CoreError } from "../types/index";
 
 // ─── Tipos globais do Core Identity Service ───────────────────────────────────
 // Vivem no Core para que outros apps (Burnite, Basalt) possam consumir o

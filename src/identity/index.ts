@@ -1,9 +1,9 @@
-export { resolveTenant, resolveTenantById } from "./context.ts";
+export { resolveTenant, resolveTenantById } from "./context";
 export type {
   D1DatabaseBinding,
   D1PreparedStatement,
   KVNamespaceBinding,
-} from "./context.ts";
+} from "./context";
 export {
   assertRole,
   assertTenantMatch,
@@ -11,8 +11,8 @@ export {
   hasRole,
   identityClaimsToUserClaims,
   verifyTokenEdDSA,
-} from "./jwt.ts";
-export type { IdentityClaims } from "./jwt.ts";
+} from "./jwt";
+export type { IdentityClaims } from "./jwt";
 
 // Sessão & cookies
 export {
@@ -22,24 +22,24 @@ export {
   DEFAULT_TOKEN_ISSUER,
   CORE_EFFECTIVE_TENANT_COOKIE,
   CORE_SESSION_COOKIE,
-} from "./auth.ts";
+} from "./auth";
 export type {
   CookieStoreLike,
   SessionCookieOptions,
   VerifiedSession,
   VerifyOptions,
-} from "./auth.ts";
+} from "./auth";
 
 // Audit do Impersonation Gate
-export { logImpersonationEvent, maybeLogImpersonation } from "./audit.ts";
-export type { ImpersonationAuditEntry } from "./audit.ts";
+export { logImpersonationEvent, maybeLogImpersonation } from "./audit";
+export type { ImpersonationAuditEntry } from "./audit";
 
 // Schemas tenant-config (Core identity service)
 export {
   bridgeLegacyPlan,
   buildCorruptionId,
   validateCoreConfig,
-} from "./tenant-config.ts";
+} from "./tenant-config";
 export type {
   CoreConfigState,
   CoreLegacyPlan,
@@ -48,4 +48,4 @@ export type {
   CoreTenantConfig,
   CoreTenantFeatures,
   CoreTenantSecurityPolicy,
-} from "./tenant-config.ts";
+} from "./tenant-config";

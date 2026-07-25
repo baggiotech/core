@@ -7,4 +7,4 @@ export {
   sanitizeObject,
   stripHtml,
   truncate,
-} from "./sanitizer.ts";
+} from "./sanitizer";

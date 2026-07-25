@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { env } from "cloudflare:test";
-import { invalidateTenantCache, resolveTenant } from "../../identity/context.ts";
-import { asTenantID, CoreError } from "../../types/index.ts";
-import type { TenantCacheEntry } from "../../types/index.ts";
+import { invalidateTenantCache, resolveTenant } from "../../identity/context";
+import { asTenantID, CoreError } from "../../types/index";
+import type { TenantCacheEntry } from "../../types/index";
 
 // Helper: insere diretamente no D1 sem passar pelo TenantedDB (tabela de infra)
 async function seedTenant(opts: {

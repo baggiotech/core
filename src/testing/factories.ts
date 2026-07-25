@@ -1,8 +1,8 @@
-import type { D1DatabaseBinding, KVNamespaceBinding } from "../identity/context.ts";
-import type { Plan, Role, TenantContext, TenantID, UserClaims } from "../types/index.ts";
-import { asTenantID, asUserID } from "../types/index.ts";
-import { generateId } from "../security/sanitizer.ts";
-import { createTenantedDB } from "../persistence/d1.ts";
+import type { D1DatabaseBinding, KVNamespaceBinding } from "../identity/context";
+import type { Plan, Role, TenantContext, TenantID, UserClaims } from "../types/index";
+import { asTenantID, asUserID } from "../types/index";
+import { generateId } from "../security/sanitizer";
+import { createTenantedDB } from "../persistence/d1";
 
 export const TEST_JWT_SECRET = "test-secret-baggio-core-2025";
 

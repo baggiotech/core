@@ -1,5 +1,5 @@
-import type { ThemeConfig, TenantContext } from "../types/index.ts";
-import type { KVNamespaceBinding } from "../identity/context.ts";
+import type { ThemeConfig, TenantContext } from "../types/index";
+import type { KVNamespaceBinding } from "../identity/context";
 
 // Mapeamento padrão — fallback para o tema baggio.tech
 const DEFAULT_THEME: Record<string, string> = {

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { env } from "cloudflare:test";
-import { logImpersonationEvent, maybeLogImpersonation } from "../../identity/audit.ts";
-import type { VerifiedSession } from "../../identity/auth.ts";
-import { asTenantID, asUserID } from "../../types/index.ts";
+import { logImpersonationEvent, maybeLogImpersonation } from "../../identity/audit";
+import type { VerifiedSession } from "../../identity/auth";
+import { asTenantID, asUserID } from "../../types/index";
 
 function buildSession(overrides: Partial<VerifiedSession> = {}): VerifiedSession {
   const tenantId = asTenantID("tenant-real");

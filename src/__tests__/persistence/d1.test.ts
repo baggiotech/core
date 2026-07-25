@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { env } from "cloudflare:test";
-import { createTenantedDB } from "../../persistence/d1.ts";
-import { asTenantID, CoreError } from "../../types/index.ts";
+import { createTenantedDB } from "../../persistence/d1";
+import { asTenantID, CoreError } from "../../types/index";
 
 // ─── Tenant Leak Tests ────────────────────────────────────────────────────────
 // Valida que o TenantedDB é um guard de isolamento: nenhuma query sem

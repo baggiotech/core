@@ -1,5 +1,5 @@
-import type { TenantID } from "../types/index.ts";
-import type { KVNamespaceBinding } from "../identity/context.ts";
+import type { TenantID } from "../types/index";
+import type { KVNamespaceBinding } from "../identity/context";
 
 // KV Bridge — prefixa todas as chaves com tenant_id para evitar colisões
 export class TenantedKV {

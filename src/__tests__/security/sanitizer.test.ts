@@ -6,7 +6,7 @@ import {
   sanitizeObject,
   stripHtml,
   truncate,
-} from "../../security/sanitizer.ts";
+} from "../../security/sanitizer";
 
 // ─── XSS — stripHtml ─────────────────────────────────────────────────────────
 
