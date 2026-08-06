@@ -10,9 +10,9 @@
  * 4. KMS_UNAVAILABLE — tipagem de erro para 503
  */
 import { describe, it, expect, vi } from "vitest";
-import { BaggioAuth, type VerifyOptions, type CookieStoreLike } from "../../identity/auth";
-import { CoreError } from "../../types/index";
-import { createCircuitBreaker, type CircuitBreaker } from "../../persistence/breaker";
+import { BaggioAuth, type VerifyOptions, type CookieStoreLike } from "../../identity/auth.js";
+import { CoreError } from "../../types/index.js";
+import { createCircuitBreaker, type CircuitBreaker } from "../../persistence/breaker.js";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

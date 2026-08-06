@@ -1,7 +1,7 @@
-import type { TenantID } from "../types/index";
-import type { D1DatabaseBinding } from "./context";
-import { generateId } from "../security/sanitizer";
-import type { VerifiedSession } from "./auth";
+import type { TenantID } from "../types/index.js";
+import type { D1DatabaseBinding } from "./context.js";
+import { generateId } from "../security/sanitizer.js";
+import type { VerifiedSession } from "./auth.js";
 
 // Registro de uma ação executada sob Impersonation Gate.
 // Grava direto no D1 do consumer; o caller é responsável por passar o binding.

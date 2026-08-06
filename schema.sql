@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS tenants (
   plan_id      TEXT NOT NULL DEFAULT 'solo',
   partner_id   TEXT,                          -- Suporte para revendedores white-label
   custom_domain TEXT UNIQUE,
+  allowed_domains TEXT,
   theme_config TEXT,                           -- JSON com cores/logos (ThemeConfig)
   status       TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'trial', 'suspended', 'cancelled')),
   created_at   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

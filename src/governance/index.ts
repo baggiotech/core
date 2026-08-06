@@ -1,8 +1,8 @@
-export { can } from "./gating";
-export { getPlanQuotas, isPlanAtLeast, PLAN_QUOTAS } from "./plans";
-export type { PlanQuotas } from "./plans";
+export { can } from "./gating.js";
+export { getPlanQuotas, isPlanAtLeast, PLAN_QUOTAS } from "./plans.js";
+export type { PlanQuotas } from "./plans.js";
 export {
   assertImpersonationSafe,
   isActionAllowedUnderImpersonation,
-} from "./impersonation";
-export type { ImpersonationAware } from "./impersonation";
+} from "./impersonation.js";
+export type { ImpersonationAware } from "./impersonation.js";

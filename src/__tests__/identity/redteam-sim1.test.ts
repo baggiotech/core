@@ -14,10 +14,10 @@ import {
   assertTenantMatch,
   identityClaimsToUserClaims,
   type IdentityClaims,
-} from "../../identity/jwt";
-import { asTenantID, asUserID, CoreError } from "../../types/index";
-import type { UserClaims } from "../../types/index";
-import { TenantedDB } from "../../persistence/d1";
+} from "../../identity/jwt.js";
+import { asTenantID, asUserID, CoreError } from "../../types/index.js";
+import type { UserClaims } from "../../types/index.js";
+import { TenantedDB } from "../../persistence/d1.js";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

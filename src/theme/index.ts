@@ -3,4 +3,4 @@ export {
   getThemeVariables,
   invalidateThemeCache,
   serializeCssVars,
-} from "./injector";
+} from "./injector.js";

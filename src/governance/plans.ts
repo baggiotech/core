@@ -1,4 +1,4 @@
-import type { Plan } from "../types/index";
+import type { Plan } from "../types/index.js";
 
 export interface PlanQuotas {
   projects: number;

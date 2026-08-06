@@ -1,4 +1,4 @@
-import { CoreError } from "../types/index";
+import { CoreError } from "../types/index.js";
 
 // ─── Forensics: integridade Ed25519 sobre arquivos R2 ─────────────────────────
 // Centraliza o que antes vivia na Server Action de compliance do Core.

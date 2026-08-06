@@ -1,6 +1,6 @@
-import type { TenantCacheEntry, TenantContext, TenantID } from "../types/index";
-import { asTenantID, CoreError } from "../types/index";
-import { isValidHostname, isValidSlug } from "../security/sanitizer";
+import type { TenantCacheEntry, TenantContext, TenantID } from "../types/index.js";
+import { asTenantID, CoreError } from "../types/index.js";
+import { isValidHostname, isValidSlug } from "../security/sanitizer.js";
 
 export interface KVNamespaceBinding {
   get(key: string): Promise<string | null>;

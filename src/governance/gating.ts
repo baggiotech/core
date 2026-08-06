@@ -1,7 +1,7 @@
-import type { Plan, TenantContext } from "../types/index";
-import { CoreError } from "../types/index";
-import { getPlanQuotas, isPlanAtLeast } from "./plans";
-import type { PlanQuotas } from "./plans";
+import type { Plan, TenantContext } from "../types/index.js";
+import { CoreError } from "../types/index.js";
+import { getPlanQuotas, isPlanAtLeast } from "./plans.js";
+import type { PlanQuotas } from "./plans.js";
 
 type QuotaKey = keyof Pick<
   PlanQuotas,

@@ -1,5 +1,5 @@
-import { CoreError } from "../types/index";
-import type { KVNamespaceBinding } from "../identity/context";
+import { CoreError } from "../types/index.js";
+import type { KVNamespaceBinding } from "../identity/context.js";
 
 // REST adapters — permitem usar TenantedKV/R2 fora de um Worker (Next.js Node, CI, etc).
 // Mantêm o mesmo contrato dos bindings nativos Cloudflare; quando o app migrar

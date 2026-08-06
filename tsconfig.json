@@ -3,7 +3,9 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "rootDir": "src"
+    "rootDir": "src",
+    "module": "esnext",
+    "moduleResolution": "bundler"
   },
   "include": ["src", "vitest-env.d.ts", "vitest-provided-context.d.ts"],
   "exclude": ["node_modules", "dist"]

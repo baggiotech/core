@@ -4,7 +4,7 @@ import {
   mapToForensicRows,
   summarizeForensicIntegrity,
   verifyEd25519Signature,
-} from "../../forensics/index";
+} from "../../forensics/index.js";
 
 // Gera um par Ed25519 via Web Crypto e devolve a chave pública/secreta.
 async function generateEdKeyPair(): Promise<{ publicKey: Uint8Array; privateKey: CryptoKey }> {

@@ -1,4 +1,4 @@
-import { CoreError } from "../types/index";
+import { CoreError } from "../types/index.js";
 
 // Circuit Breaker singleton — compartilhado em todos os apps do monorepo.
 // Substitui implementações locais para garantir cooldown coerente entre Server Actions.
