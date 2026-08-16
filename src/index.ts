@@ -60,7 +60,18 @@ export type {
 export { can } from "./governance/gating.js";
 export { getPlanQuotas, isPlanAtLeast, PLAN_QUOTAS } from "./governance/plans.js";
 export type { PlanQuotas } from "./governance/plans.js";
-export { Modules, hasPermission, buildBitmask } from "./governance/permissions.js";
+export {
+  Modules,
+  WorkspaceModules,
+  hasPermission,
+  hasModule,
+  addModule,
+  removeModule,
+  buildBitmask,
+  serializeBitmask,
+  deserializeBitmask,
+} from "./governance/permissions.js";
+export type { ModuleKey } from "./governance/permissions.js";
 
 // Persistence Adapters
 export { createTenantedDB, TenantedDB } from "./persistence/d1.js";
