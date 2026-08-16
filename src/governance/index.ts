@@ -6,3 +6,5 @@ export {
   isActionAllowedUnderImpersonation,
 } from "./impersonation.js";
 export type { ImpersonationAware } from "./impersonation.js";
+export * from "./automations.js";
+

@@ -72,6 +72,8 @@ export {
   deserializeBitmask,
 } from "./governance/permissions.js";
 export type { ModuleKey } from "./governance/permissions.js";
+export * from "./governance/automations.js";
+
 
 // Persistence Adapters
 export { createTenantedDB, TenantedDB } from "./persistence/d1.js";
