@@ -49,3 +49,11 @@ export type {
   CoreTenantFeatures,
   CoreTenantSecurityPolicy,
 } from "./tenant-config.js";
+
+// Owner Resolution (fonte única de verdade para MASTER_EMAILS)
+export { isOwnerEmail, resolveOwner } from "./owner.js";
+export type { OwnerResolution } from "./owner.js";
+
+// Niche Dictionary (Polimorfismo de CRM)
+export { getDictionary, CRM_DICTIONARIES } from "./niche.js";
+export type { CrmDictionary, NicheType } from "./niche.js";

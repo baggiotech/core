@@ -32,6 +32,14 @@ export type {
 export { logImpersonationEvent, maybeLogImpersonation } from "./identity/audit.js";
 export type { ImpersonationAuditEntry } from "./identity/audit.js";
 
+// Owner Resolution (MASTER_EMAILS centralizados)
+export { isOwnerEmail, resolveOwner } from "./identity/owner.js";
+export type { OwnerResolution } from "./identity/owner.js";
+
+// Niche Dictionary
+export { getDictionary, CRM_DICTIONARIES } from "./identity/niche.js";
+export type { CrmDictionary, NicheType } from "./identity/niche.js";
+
 // Core tenant-config schema
 export {
   bridgeLegacyPlan,
