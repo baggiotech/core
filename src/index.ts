@@ -74,6 +74,8 @@ export {
 export type { ModuleKey } from "./governance/permissions.js";
 export * from "./governance/automations.js";
 export * from "./governance/presets.js";
+export * from "./governance/revisions.js";
+export * from "./governance/field-policies.js";
 
 
 

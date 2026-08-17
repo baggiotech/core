@@ -8,4 +8,6 @@ export {
 export type { ImpersonationAware } from "./impersonation.js";
 export * from "./automations.js";
 export * from "./presets.js";
+export * from "./revisions.js";
+export * from "./field-policies.js";
 
