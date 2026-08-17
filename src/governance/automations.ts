@@ -1,9 +1,11 @@
 export const TRIGGER_EVENTS = [
-  { id: 'crm.lead_stage_changed', label: 'CRM: Estágio do Lead Alterado (ex: Fechado)', module: 'crm' },
-  { id: 'crm.lead_created', label: 'CRM: Novo Lead Inbound Captado', module: 'crm' },
+  { id: 'crm.lead_stage_changed', label: 'CRM: Estágio do Lead Alterado (ex: Fechado, Proposta, Negociação)', module: 'crm' },
+  { id: 'crm.lead_created', label: 'CRM: Novo Lead Inbound Captado (Site/LP/WhatsApp)', module: 'crm' },
   { id: 'members.member_created', label: 'Membros: Nova Conta / Membro Cadastrado', module: 'root' },
   { id: 'finance.invoice_paid', label: 'Financeiro: Pagamento Confirmado (Asaas/Graphite)', module: 'finance' },
+  { id: 'finance.invoice_overdue', label: 'Financeiro: Fatura Vencida / Inadimplência', module: 'finance' },
   { id: 'cms.form_submitted', label: 'CMS: Formulário de Landing Page Enviado', module: 'cms' },
+  { id: 'contract.signed', label: 'Contratos: Contrato Assinado Digitalmente', module: 'root' },
   { id: 'manual.trigger', label: 'Manual: Disparo Sob Demanda / Webhook', module: 'root' },
 ] as const;
 
@@ -36,7 +38,9 @@ export type AutomationActionType =
   | 'notify_whatsapp'
   | 'notify_email'
   | 'webhook_dispatch'
-  | 'finance_income';
+  | 'finance_income'
+  | 'update_tenant_status'
+  | 'update_bitmask';
 
 export interface ProvisionTenantAction {
   type: 'provision_tenant';
@@ -101,6 +105,23 @@ export interface FinanceIncomeAction {
   };
 }
 
+export interface UpdateTenantStatusAction {
+  type: 'update_tenant_status';
+  config: {
+    tenantSlugField?: string;
+    targetStatus: 'active' | 'suspended' | 'trial' | 'cancelled';
+  };
+}
+
+export interface UpdateBitmaskAction {
+  type: 'update_bitmask';
+  config: {
+    tenantSlugField?: string;
+    addModules?: string[];
+    removeModules?: string[];
+  };
+}
+
 export type AutomationAction =
   | ProvisionTenantAction
   | CreateMemberAction
@@ -108,7 +129,9 @@ export type AutomationAction =
   | NotifyWhatsappAction
   | NotifyEmailAction
   | WebhookDispatchAction
-  | FinanceIncomeAction;
+  | FinanceIncomeAction
+  | UpdateTenantStatusAction
+  | UpdateBitmaskAction;
 
 export interface WorkspaceAutomation {
   id: string;
